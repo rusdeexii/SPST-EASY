@@ -1,5 +1,8 @@
-## Getting Started
+## Stack
+NextJS + Prisma + Postgresql
 
+## Getting Started
+config .env
 First, run the development server:
 
 ```bash
