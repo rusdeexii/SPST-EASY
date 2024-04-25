@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  email     String   @unique
+  password  String
+  image     String?
+  role      String   @default("member") // Add a role field
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Prisma model สำหรับตารางทะเบียน (registries)
+model Registry {
+  registry_id           Int      @id @default(autoincrement())
+  document_id           String
+  date                  String
+  document_number       String
+  contract_number       String
+  item                  String
+  code                  String
+  department            String
+  activity_project      String
+  bank_deposit_book     String
+  received              String
+  loan_returned         String
+  withdrawal            String
+  expense               String
+  balance               String
+  total_from_bookbang   String
+  note                  String?
+  comment               String
+}
+
+// Prisma model สำหรับตารางรายการการเงินประจำเดือน (monthly_transactions)
+model MonthlyTransaction {
+  transaction_id            Int      @id @default(autoincrement())
+  code                      String
+  item                      String
+  new_code                  String
+  brought_forward_balance   Float
+  deposit                   Float
+  withdrawal                Float
+  loan_repayment_expense    Float
+  current_balance           Float
+}

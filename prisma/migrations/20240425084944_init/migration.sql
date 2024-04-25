@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Registry" ALTER COLUMN "date" SET DATA TYPE TEXT;
